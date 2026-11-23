@@ -4,28 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello A2UI</title>
+    <meta name="description" content="Interactieve showcase van A2UI: agents die native UI beschrijven in declaratieve JSON." />
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
-    <header>
+    <header class="site">
       <h1>Hello A2UI</h1>
       <p>
-        Een minimale demo van <a href="https://a2ui.org" target="_blank" rel="noopener">A2UI</a>
-        (Agent-to-User Interface): een (gesimuleerde) agent stuurt declaratieve JSON-berichten,
-        de client rendert ze met native componenten via <code>@a2ui/lit</code>.
+        <a href="https://a2ui.org" target="_blank" rel="noopener">A2UI</a> laat een agent een gebruikersinterface
+        beschrijven als declaratieve JSON. De client rendert die met eigen, vertrouwde componenten — hier via
+        <code>@a2ui/lit</code>. Elk scenario hieronder is een gesimuleerde agent; rechts zie je exact welke berichten
+        heen en weer gaan.
       </p>
     </header>
+
+    <nav class="scenarios" id="nav" aria-label="Scenario's"></nav>
+
     <main>
       <section class="pane">
-        <h2>Gerenderde UI</h2>
+        <div class="pane-head">
+          <div>
+            <h2 id="sc-title"></h2>
+            <p id="sc-blurb" class="blurb"></p>
+          </div>
+          <button id="reset" class="ghost" type="button" title="Scenario herstarten">↺ Herstart</button>
+        </div>
+        <ul id="sc-features" class="chips"></ul>
         <div id="surface-host" class="surface-host"></div>
-        <button id="reset" class="reset" type="button">Opnieuw beginnen</button>
       </section>
-      <section class="pane">
-        <h2>A2UI-berichten</h2>
-        <ol id="log" class="log"></ol>
+
+      <section class="pane side">
+        <div class="side-tabs" role="tablist">
+          <button role="tab" data-view="log" aria-selected="true">Berichten <span id="log-count" class="count"></span></button>
+          <button role="tab" data-view="model" aria-selected="false">Datamodel</button>
+          <button role="tab" data-view="editor" aria-selected="false">Playground</button>
+        </div>
+
+        <div class="view" data-view="log">
+          <p class="hint">Nieuwste bovenaan. <span class="in-dot"></span> agent → client · <span class="out-dot"></span> client → agent</p>
+          <ol id="log" class="log"></ol>
+        </div>
+
+        <div class="view" data-view="model" hidden>
+          <p class="hint">De client-side staat van elke surface. Typ in het formulier en zie het live veranderen.</p>
+          <pre id="model" class="code"></pre>
+        </div>
+
+        <div class="view" data-view="editor" hidden>
+          <p class="hint">
+            Bewerk A2UI-berichten (een JSON-array) en render ze links. Start met de berichten van het huidige scenario.
+          </p>
+          <textarea id="editor" class="code editor" spellcheck="false"></textarea>
+          <div class="editor-actions">
+            <button id="load" class="ghost" type="button">Laad huidig scenario</button>
+            <button id="render" class="primary" type="button">Render ▶</button>
+          </div>
+          <pre id="editor-errors" class="errors" hidden></pre>
+        </div>
       </section>
     </main>
+
+    <footer class="site">
+      Broncode op <a href="https://github.com/MPParsley/hello-a2ui">GitHub</a> · A2UI protocol v1.0 ·
+      gebouwd met <code>@a2ui/lit</code> en <code>@a2ui/web_core</code>
+    </footer>
     <script type="module" src="./src/main.ts"></script>
   </body>
 </html>
