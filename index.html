@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello A2UI</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Hello A2UI</h1>
+      <p>
+        Een minimale demo van <a href="https://a2ui.org" target="_blank" rel="noopener">A2UI</a>
+        (Agent-to-User Interface): een (gesimuleerde) agent stuurt declaratieve JSON-berichten,
+        de client rendert ze met native componenten via <code>@a2ui/lit</code>.
+      </p>
+    </header>
+    <main>
+      <section class="pane">
+        <h2>Gerenderde UI</h2>
+        <div id="surface-host" class="surface-host"></div>
+        <button id="reset" class="reset" type="button">Opnieuw beginnen</button>
+      </section>
+      <section class="pane">
+        <h2>A2UI-berichten</h2>
+        <ol id="log" class="log"></ol>
+      </section>
+    </main>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

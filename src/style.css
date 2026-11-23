@@ -1,0 +1,48 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f6f7fb;
+  --fg: #1d2330;
+  --muted: #5b6475;
+  --pane: #ffffff;
+  --border: #dde1ea;
+  --accent: #3b5bdb;
+  --code-bg: #f0f2f7;
+  --a2ui-color-primary: #3b5bdb;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11141b;
+    --fg: #e6e9f0;
+    --muted: #9aa3b5;
+    --pane: #1a1f29;
+    --border: #2c3341;
+    --accent: #8ea6ff;
+    --code-bg: #141821;
+    --a2ui-color-primary: #8ea6ff;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); line-height: 1.5; }
+header { max-width: 1100px; margin: 0 auto; padding: 32px 16px 8px; }
+header h1 { margin: 0 0 4px; font-size: 1.8rem; }
+header p { margin: 0; color: var(--muted); max-width: 70ch; }
+a { color: var(--accent); }
+main {
+  max-width: 1100px; margin: 0 auto; padding: 16px;
+  display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+@media (max-width: 800px) { main { grid-template-columns: minmax(0, 1fr); } }
+.pane { background: var(--pane); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 0; }
+.pane h2 { margin: 0 0 12px; font-size: 1rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.surface-host { min-height: 200px; }
+.reset {
+  margin-top: 12px; background: none; border: 1px solid var(--border); color: var(--muted);
+  border-radius: 8px; padding: 6px 12px; cursor: pointer; font: inherit;
+}
+.reset:hover { color: var(--fg); }
+.log { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; max-height: 70vh; overflow: auto; }
+.log li { flex-shrink: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.log .dir { display: block; font-size: .75rem; font-weight: 600; padding: 4px 8px; background: var(--code-bg); color: var(--muted); }
+.log li.out .dir { color: var(--accent); }
+.log pre { margin: 0; padding: 8px; font-size: .75rem; overflow: auto; max-height: 260px; }
